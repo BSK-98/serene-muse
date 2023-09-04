@@ -10,6 +10,11 @@ class Utils {
         return
     }
 
+    empty (value) {
+        if (value === '') return true
+        return false
+    }
+
     getCopyright () {
         $ ("#year").html (new Date ().getFullYear ())
     }
