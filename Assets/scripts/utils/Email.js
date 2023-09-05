@@ -1,7 +1,7 @@
 class Email {
     constructor (utils) {
         this.utils = utils
-        this.signUp ()
+        // this.signUp ()
     }
     signUp () {
         let name, email, errors
