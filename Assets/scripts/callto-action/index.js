@@ -25,7 +25,11 @@ class CallToAction {
             case 'sign-up':
                 signUp ()
                 break;
-        
+
+            case 'sign-up-for-a-spot':
+                signUpSpace ()
+                break;
+            
             case 'follow-as':
                 console.log(e.target.getAttribute('data-action-type'));
             default:
@@ -38,6 +42,9 @@ class CallToAction {
         switch (e.target.getAttribute('data-close-action-type')) {
             case 'sign-up':
                 closeSignUp ()
+                break;
+            case 'sign-up-for-a-spot':
+                closeSignUpSpace ()
                 break;
         
             case 'follow-as':
@@ -55,6 +62,15 @@ function closeSignUp () {
 }
 function signUp () {
     const popUp = $ ('#sign-up')
+    popUp.css ("display", "flex")
+}
+
+function closeSignUpSpace () {
+    const popUp = $ ('#sign-up-for-a-spot')
+    popUp.css ("display", "none")
+}
+function signUpSpace () {
+    const popUp = $ ('#sign-up-for-a-spot')
     popUp.css ("display", "flex")
 }
 
