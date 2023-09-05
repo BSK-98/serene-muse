@@ -87,7 +87,9 @@
             <h2 class="head-1 relative z-[10] heading">Advent Spreaders</h2>
             <p class="mt-2 text-purple-400 font-semibold relative z-[10]">All your favorite from the Advent Spreaders</p>
             <div class="mt-16 relative z-[10]">
-                <button data-action-type="follow-as" class="call-to-action call-to-action-btn1">Fellow the Advent Spreaders On Social media</button>
+                <a href="https://web.facebook.com/ADacappella">
+                    <button class="call-to-action call-to-action-btn1">Fellow the Advent Spreaders On Social media</button>
+                </a>
             </div>
         </div>
     </div>
@@ -232,6 +234,11 @@
         </div>
     </div>
 
+    <div id="loader" class="hidden fixed top-0 left-0 right-0 bottom-0 bg-default/50 z-[10000]">
+        <img src="./Assets/images/loader.gif" alt="Loader">
+    
+    </div>
+
     
 
     <footer class="p-3 bg-default text-white flex justify-end items-center pr-10">
@@ -245,61 +252,75 @@
 <script>
     var form = document.getElementById("my-form");
     var form1 = document.getElementById("my-form1");
+    var loader = document.getElementById ("loader")
     
     async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("my-form-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "Thanks for your submission!";
-          form.reset()
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              status.innerHTML = "Oops! There was a problem submitting your form"
+        loader.style.display = "block"
+        event.preventDefault();
+        var status = document.getElementById("my-form-status");
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
             }
-          })
-        }
-      }).catch(error => {
-        status.innerHTML = "Oops! There was a problem submitting your form"
-      });
+        }).then(response => {
+            if (response.ok) {
+                
+            loader.style.display = "none"
+            status.innerHTML = "Thanks for your submission!";
+            form.reset()
+            } else {
+            response.json().then(data => {
+                
+                loader.style.display = "none"
+                if (Object.hasOwn(data, 'errors')) {
+                    status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                } else {
+                    status.innerHTML = "Oops! There was a problem submitting your form"
+                }
+            })
+            }
+        }).catch(error => {
+            loader.style.display = "none"
+            status.innerHTML = "Oops! There was a problem submitting your form"
+        });
     }
     
     async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("my-form1-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form1.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "Thanks for your submission!";
-          form1.reset()
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              status.innerHTML = "Oops! There was a problem submitting your form"
+        loader.style.display = "block"
+        event.preventDefault();
+        var status = document.getElementById("my-form1-status");
+        var data = new FormData(event.target);
+        fetch(event.target.action, {
+            method: form1.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
             }
-          })
-        }
-      }).catch(error => {
-        status.innerHTML = "Oops! There was a problem submitting your form"
-      });
+        }).then(response => {
+            if (response.ok) {
+                
+                loader.style.display = "none"
+                status.innerHTML = "Thanks for your submission!";
+                form1.reset()
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        loader.style.display = "none"
+                        status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                    } else {
+                        
+                        loader.style.display = "none"
+                        status.innerHTML = "Oops! There was a problem submitting your form"
+                    }
+                })
+            }
+        }).catch(error => {
+            loader.style.display = "none"
+            status.innerHTML = "Oops! There was a problem submitting your form"
+        });
     }
     
     form.addEventListener("submit", handleSubmit)
