@@ -60,10 +60,14 @@ img {
 .bg-1 {
     background: url(../images/login1.jpg) no-repeat;
 }
-#sign-up {
+#sign-up,
+#sign-up-for-a-spot {
+
     display: none;
 }
-.input-group input {
+.input-group input, 
+.input-group textarea,
+select {
     display: block;
     width: 100%;
     border: solid thin #00001a3b;
@@ -78,7 +82,6 @@ img {
     font-size: 34px;
     font-weight: 500;
 }
-
 @media(max-width: 768px) {
     .count-down {
         left: unset !important;
