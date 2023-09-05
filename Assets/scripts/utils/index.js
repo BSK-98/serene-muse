@@ -44,10 +44,10 @@ class Utils {
             $ ('#seconds').html (seconds)
             if (distance > 0) {
                 clearInterval (interval)
-                days = '00'
-                hours = '00'
-                minuets = '00'
-                seconds = '00'
+                 $ ('#days').html ('00')
+                 $ ('#hours').html ('00')
+                 $ ('#minutes').html ('00')
+                 $ ('#seconds').html ('00')
             }
 
         }, 1000)
