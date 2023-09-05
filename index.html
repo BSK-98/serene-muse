@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serene Muse | Coming Soon</title>
+    <meta name="description" content="Serene quite Worship that connects you to God.">
+    <meta name="keywords" content="SDA Music Worship Choreal Acapella choir hymns">
+    <meta name="author" content="BSKs World Inc.">
     
     <script src="./Assets/scripts/tailwindcss.3.3.3.js"></script>
     <script src="./Assets/scripts/tailwindconfig.js"></script>
@@ -99,7 +102,7 @@
                             <strong class="text-white">DO YOU WANT TO BE PART OF SERENE MUSIC?</strong> are you a director or a Soloist or apart of a singing group!
                             WELL THIS IS YOUR CALL. Serene Muse has an open slots for a limited number of Groups, Soloist and more. spots are limited!!.
                         <div class="mt-16">
-                            <button data-action-type="sign-up" class="call-to-action animate-pulse">Secure a Spot</button>
+                            <button data-action-type="sign-up-for-a-spot" class="call-to-action animate-pulse">Secure a Spot</button>
                         </div>
                     </div>
                 </div>
@@ -163,7 +166,7 @@
             </div>
            <div class="sm-full main-full w-[43%] pl-2 pr-2 pt-5 pb-5">
                 <h1 class="text-purple-400 text-center capitalize text-2xl font-semibold">Sign up for waiting list</h1>
-                <form action="https://formsubmit.co/el/hubazo" class="form-to-send" id="sign-up-form" class="mt-10" method="post">
+                <form id="my-form" action="https://formspree.io/f/xzblgaaw" class="form-to-send" id="sign-up-form" class="mt-10" method="post">
                     <div class="input-group">
                         <input type="text" class="p-2" placeholder="First Name" name="first_name">
                     </div>
@@ -176,22 +179,129 @@
                     <div class="input-group">
                         <input type="text" class="p-2" placeholder="Email Address" name="email">
                     </div>
-                    <input type="hidden" value="Signing up as a user of Serene Muse.">
+                    <input type="hidden" name="message" value="Signing up as a user of Serene Muse.">
                     <div class="input-group mt-10">
                         <input type="submit" data-form-type="sign-up" class="p-2 cursor-pointer bg-default text-white" value="Sign Up">
                     </div>
+                    <p id="my-form-status"></p>
                 </form>
            </div>
         </div>
     </div>
+
+    <div id="sign-up-for-a-spot" class="popup fixed top-0 left-0 right-0 bottom-0 bg-black/80 z-[100] flex justify-center items-center">
+        
+        <span data-close-action-type="sign-up" class="close-action text text-3xl text-white absolute top-10 right-10 cursor-pointer">X</span>
+        <div class="sm-full w-3/6 min-h-[90px] bg-white rounded-md flex gap-2 overflow-hidden">
+            <div class="w-[57%] overlay hid-sm">
+                <img src="./Assets/images/login2.jpg" class="object-cover" alt="Serene Muse">
+            </div>
+           <div class="sm-full main-full w-[43%] pl-2 pr-2 pt-5 pb-5">
+                <h1 class="text-purple-400 text-center capitalize text-2xl font-semibold">Secure A Spot</h1>
+                <form id="my-form1" action="https://formspree.io/f/myyqjdno" class="form-to-send" id="sign-up-form" class="mt-10" method="post">
+                    <div class="input-group">
+                        <input type="text" class="p-2" placeholder="Name" name="name">
+                    </div>
+                    <div class="input-group">
+                        <select name="group_type">
+                            <option value="">Select Singer type</option>
+                            <option value="Soloist">Soloist</option>
+                            <option value="Ministry">Ministry</option>
+                            <option value="Choir">Choir</option>
+                            <option value="Quartet">Quartet</option>
+                            <option value="Trial">Trial</option>
+                            <option value="Duet">Duet</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="p-2" placeholder="Directors Name" name="director">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="p-2" placeholder="Email Address" name="email">
+                    </div>
+                    <input type="hidden" name="type" value="Secure A Spot">
+                    <div class="input-group">
+                        <textarea name="message" class="w-full" placeholder="Tell Us About You Or Your Group"></textarea>
+                    </div>
+                    <div class="input-group mt-10">
+                        <input type="submit" data-form-type="sign-up" class="p-2 cursor-pointer bg-default text-white" value="Sign Up">
+                    </div>
+                    <p id="my-form1-status"></p>
+                </form>
+           </div>
+        </div>
+    </div>
+
+    
 
     <footer class="p-3 bg-default text-white flex justify-end items-center pr-10">
         &copy; <span class="font-bold">&nbsp; <span  id="year"></span> Serene Muse</span>, All Rights Reserved
     </footer>
     
     <script src="./Assets/scripts/jquery.js"></script>
-    <script src="./Assets/scripts/tailwindcss.3.3.3.js"></script>
-    <script src="./Assets/scripts/tailwindconfig.js"></script>
     <script type="module" src="./Assets/scripts/main-app.js"></script>
 </body>
 </html>
+<script>
+    var form = document.getElementById("my-form");
+    var form1 = document.getElementById("my-form1");
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          status.innerHTML = "Thanks for your submission!";
+          form.reset()
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form"
+            }
+          })
+        }
+      }).catch(error => {
+        status.innerHTML = "Oops! There was a problem submitting your form"
+      });
+    }
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form1-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form1.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          status.innerHTML = "Thanks for your submission!";
+          form1.reset()
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form"
+            }
+          })
+        }
+      }).catch(error => {
+        status.innerHTML = "Oops! There was a problem submitting your form"
+      });
+    }
+    
+    form.addEventListener("submit", handleSubmit)
+    form1.addEventListener("submit", handleSubmit)
+</script>
