@@ -78,22 +78,25 @@ img {
     font-size: 34px;
     font-weight: 500;
 }
+
 @media(max-width: 768px) {
     .count-down {
-        left: unset;
+        left: unset !important;
+        left: 0 !important;
         width: 100% !important;
         padding: 10px 20px !important;
     }
     .info {
-        width: 100%;
+        width: 90% !important;
         padding: 10px 20px !important;
     }
     .flex-holder {
         display: unset !important;
+        background-color: #00001a4f !important;
     }
     .flex-holder .flex-hold {
-        font-size: 19px;
-        width: 100%;
+        font-size: 19px !important;
+        width: 100% !important;
         padding: unset !important;
     }
     .heading {
@@ -105,10 +108,10 @@ img {
     .flex-hold h4,
     .flex-hold h5,
     .flex-hold h6 {
-        font-size: unset;
+        font-size: unset !important;
     }
     footer {
-        position: fixed;
+        position: fixed !important;
         bottom: 0;
         left: 0;
         right: 0;
@@ -117,7 +120,14 @@ img {
         font-size: 30px !important;
     }
     .hid-sm {
-        display: none;
+        display: none !important;
+    }
+    .sm-full {
+        width: 80% !important;
+        margin: unset !important;
+    }
+    .main-full {
+        width: 100% !important;
     }
 }
 /* 920×1080, 1366×768, and 360×640 */
