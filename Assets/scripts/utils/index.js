@@ -42,7 +42,7 @@ class Utils {
             $ ('#hours').html (hours)
             $ ('#minutes').html (minuets)
             $ ('#seconds').html (seconds)
-            if (distance > 0) {
+            if (distance < 0) {
                 clearInterval (interval)
                  $ ('#days').html ('00')
                  $ ('#hours').html ('00')
